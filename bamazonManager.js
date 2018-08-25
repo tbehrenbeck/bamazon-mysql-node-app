@@ -39,6 +39,9 @@ function menu() {
                 case "Add to Inventory":
                     addStock();
                     break;
+                case "Add New Product":
+                    newProduct();
+                    break;
             }
         })
 }
@@ -60,7 +63,7 @@ function viewProducts() {
     });
 };
 
-//Display all products with less than 5 stock quantity
+//Display products with low inventory
 function viewLow() {
     connection.query('SELECT * FROM products', function (err, res) {
         if (err) throw err;
@@ -81,7 +84,7 @@ function viewLow() {
     });
 };
 
-//Add more of any item currently in the store 
+//Increase stock quanity of item currently in the store 
 function addStock() {
 
     connection.query("SELECT * FROM products", function (err, res) {
@@ -136,8 +139,60 @@ function addStock() {
                 menu();
             });
     });
-
 }
 
+//Add new product to store
+function newProduct() {
+    inquirer
+    .prompt([
+        {
+            name: "item", 
+            type: "input", 
+            message: "What is the name of the product you would like to add?"
+        }, 
+        {
+            name: "department", 
+            type: "list", 
+            message: "What department does this product fall under?",
+            choices: ["Office Products", "Kitchen Essentials", "Entertainment", "Sports & Outdoors", "Clothing", "Health & Household", "Toys & Games", "Electronics", "Misc"]
+        }, 
+        {
+            name: "price", 
+            type: "input", 
+            message: "How much does it cost?", 
+            validate: function (value) {
+                if (isNaN(value) === false) {
+                    return true;
+                }
+                return false;
+            }
+        }, 
+        {
+            name: "quantity", 
+            type: "input",
+            message: "How many would you like to stock?", 
+            validate: function (value) {
+                if (isNaN(value) === false) {
+                    return true;
+                }
+                return false;
+            }
+        }
+    ])
+    .then(function(answer) {
+        connection.query("INSERT INTO products SET ?", 
+        {
+            product_name: answer.item,
+            department_name: answer.department,
+            price: answer.price, 
+            stock_quantity: answer.quantity
+        },
+         function (err) {
+            if(err) throw err;
+            console.log("New product added successfully");
+            menu();
+        })
+    })
+}
 
 

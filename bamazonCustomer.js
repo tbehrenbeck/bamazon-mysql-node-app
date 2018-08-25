@@ -70,8 +70,7 @@ function wantToBuy() {
                 }
             }
             var updateStock = chosenItem.stock_quantity - parseInt(answer.quantity);
-            var totalPurchase = chosenItem.price * answer.quantity;
-            //console.log(parseInt(updateStock));
+            var totalPurchase = chosenItem.price * parseInt(answer.quantity);
             if(parseInt(updateStock) < 0) {
                 console.log("Insufficient quantity!")
                 start();
@@ -89,7 +88,7 @@ function wantToBuy() {
                     ], 
                     function(err) {
                         if(err) throw err;
-                        console.log("\nPurchase successful! Your total is " + parseInt(totalPurchase).toFixed(2));
+                        console.log("\nPurchase successful! Your total is $" + totalPurchase);
                         start();
                     }
                 )

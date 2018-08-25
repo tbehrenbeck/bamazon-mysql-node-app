@@ -18,7 +18,7 @@ VALUES ("Magnetic Calendar", "Office Products", 9.47, 10),
 			("Bocce Ball Set", "Sports & Outdoors", 24.99, 15), 
 			("Aviator Sunglasses", "Clothing", 130.85, 14), 
 			("LED Camping Lantern", "Sports & Outdoors", 11.51, 2), 
-			("Purell Wipes", "Health & Household", 11.50, 28), 
+			("Purell Wipes", "Health & Household", 11.51, 28), 
 			("Princess Castle Play Tent", "Toys & Games", 17.99, 4), 
 			("Fire TV Cube", "Electronics", 89.99, 48),
 			("Stainless Steel Blade", "Sports & Outdoors", 45.67, 7);

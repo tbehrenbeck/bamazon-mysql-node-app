@@ -35,7 +35,7 @@ function start() {
 //The app should then prompt users with two messages
 function wantToBuy() {
 
-    connection.query("SELECT * FROM products", function (err, results) {
+    connection.query("SELECT * FROM products", function (err, res) {
         if (err) throw err;
         inquirer
         .prompt([
@@ -64,9 +64,9 @@ function wantToBuy() {
         ])
         .then(function (answer) {
             var chosenItem;
-            for (var i = 0; i < results.length; i++) {
-                if(results[i].id == answer.choice) {
-                    chosenItem = results[i];
+            for (var i = 0; i < res.length; i++) {
+                if(res[i].id == answer.choice) {
+                    chosenItem = res[i];
                 }
             }
             var updateStock = chosenItem.stock_quantity - parseInt(answer.quantity);
@@ -87,8 +87,8 @@ function wantToBuy() {
                             id: chosenItem.id
                         }
                     ], 
-                    function(error) {
-                        if(error) throw error;
+                    function(err) {
+                        if(err) throw err;
                         console.log("\nPurchase successful! Your total is " + parseInt(totalPurchase).toFixed(2));
                         start();
                     }

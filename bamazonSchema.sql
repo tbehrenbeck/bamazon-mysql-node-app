@@ -6,7 +6,7 @@ CREATE TABLE products (
 	id INTEGER NOT NULL AUTO_INCREMENT,
 	product_name VARCHAR(50), 
 	department_name VARCHAR(50),
-	price INTEGER(10,2),
+	price DECIMAL(10,2),
 	stock_quantity INTEGER(10),
 	PRIMARY KEY (id)
 );
@@ -21,6 +21,6 @@ VALUES ("Magnetic Calendar", "Office Products", 9.47, 10),
 			("Purell Wipes", "Health & Household", 11.50, 28), 
 			("Princess Castle Play Tent", "Toys & Games", 17.99, 4), 
 			("Fire TV Cube", "Electronics", 89.99, 48),
-			("Stainless Steel Blade", "Sports & Outdoors", 45.67, 7)
+			("Stainless Steel Blade", "Sports & Outdoors", 45.67, 7);
 
-SELECT * FROM products;
+SELECT * FROM products

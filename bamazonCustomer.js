@@ -1,6 +1,6 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
-
+var Table = require('cli-table');
 
 var connection = mysql.createConnection({
     host: "localhost",
@@ -18,25 +18,25 @@ connection.connect(function (err) {
 
 // first display all of the items available for sale
 function start() {
-    connection.query("SELECT * FROM products", function (err, res) {
-        console.log(
-            "Item id |" + " Product |" + " Price");
+    connection.query('SELECT id, product_name, department_name, price FROM products', function (err, res) {
+        if (err) throw err;
+        var productsTable = new Table({
+          head: ['ID', 'Name', 'Department', 'Price'],
+          colWidths: [5, 33, 25, 15]
+        });
         for (var i = 0; i < res.length; i++) {
-            console.log(res[i].id +  " | " + res[i].product_name + " | " + res[i].price);
-        }
-        console.log("--------------------");
-        wantToBuy();
-    });
+          productsTable.push([res[i].id, res[i].product_name, res[i].department_name, "$"+res[i].price]);
+        };
+        console.log(productsTable.toString());
+      });
+      wantToBuy();
 }
-
-
 
 //The app should then prompt users with two messages
 function wantToBuy() {
 
     connection.query("SELECT * FROM products", function (err, results) {
         if (err) throw err;
-
         inquirer
         .prompt([
             {
@@ -71,7 +71,7 @@ function wantToBuy() {
             }
             var updateStock = chosenItem.stock_quantity - parseInt(answer.quantity);
             var totalPurchase = chosenItem.price * answer.quantity;
-            console.log(parseInt(updateStock));
+            //console.log(parseInt(updateStock));
             if(parseInt(updateStock) < 0) {
                 console.log("Insufficient quantity!")
                 start();

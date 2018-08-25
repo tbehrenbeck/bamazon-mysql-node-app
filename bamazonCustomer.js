@@ -1,6 +1,7 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
 
+
 var connection = mysql.createConnection({
     host: "localhost",
     port: 8889,
@@ -19,10 +20,9 @@ connection.connect(function (err) {
 function start() {
     connection.query("SELECT * FROM products", function (err, res) {
         console.log(
-            "\nItem id " + " Product         " + " Price"+ 
-            "\n------- " + " --------------- " + " ------" );
+            "Item id |" + " Product |" + " Price");
         for (var i = 0; i < res.length; i++) {
-            console.log(res[i].id +"     " +  " | " + res[i].product_name + " | " + res[i].price);
+            console.log(res[i].id +  " | " + res[i].product_name + " | " + res[i].price);
         }
         console.log("--------------------");
         wantToBuy();
@@ -69,11 +69,14 @@ function wantToBuy() {
                     chosenItem = results[i];
                 }
             }
-            // console.log(answer.quantity);
-            if(chosenItem.stock_quantity <= 0) {
+            var updateStock = chosenItem.stock_quantity - parseInt(answer.quantity);
+            var totalPurchase = chosenItem.price * answer.quantity;
+            console.log(parseInt(updateStock));
+            if(parseInt(updateStock) < 0) {
                 console.log("Insufficient quantity!")
-            } else {
-                var updateStock = chosenItem.stock_quantity - answer.quantity;
+                start();
+            } 
+            else {
                 connection.query(
                     "UPDATE products SET ? WHERE ?", 
                     [
@@ -86,7 +89,8 @@ function wantToBuy() {
                     ], 
                     function(error) {
                         if(error) throw error;
-                        console.log("purchase successful");
+                        console.log("\nPurchase successful! Your total is " + parseInt(totalPurchase).toFixed(2));
+                        start();
                     }
                 )
             }

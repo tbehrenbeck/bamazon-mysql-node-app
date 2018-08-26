@@ -20,7 +20,7 @@ VALUES ("Magnetic Calendar", "Office Products", 9.47, 10),
 			("LED Camping Lantern", "Sports & Outdoors", 11.51, 2), 
 			("Purell Wipes", "Health & Household", 11.51, 28), 
 			("Princess Castle Play Tent", "Toys & Games", 17.99, 4), 
-			("Fire TV Cube", "Electronics", 89.99, 48),
+			("Fire TV Cube", "Entertainment", 89.99, 48),
 			("Stainless Steel Blade", "Sports & Outdoors", 45.67, 7);
 
 ALTER TABLE products ADD COLUMN product_sales DECIMAL(10,2);
@@ -33,5 +33,14 @@ CREATE TABLE departments (
 	over_head_costs DECIMAL(10,2),
 	PRIMARY KEY (department_id)
 );
+
+INSERT INTO departments (department_name, over_head_costs)
+VALUES ("Office Products", 500),
+			("Kitchen Essentials", 300),
+			("Entertainment", 890),
+			("Sports & Outdoors", 1500),
+			("Clothing", 180),
+			("Health & Household", 80),
+			("Toys & Games", 220);
 
 SELECT * FROM departments;

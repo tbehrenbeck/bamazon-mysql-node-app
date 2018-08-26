@@ -71,6 +71,8 @@ function wantToBuy() {
             }
             var updateStock = chosenItem.stock_quantity - parseInt(answer.quantity);
             var totalPurchase = chosenItem.price * parseInt(answer.quantity);
+            var productSalesTotals= chosenItem.product_sales + totalPurchase;
+
             if(parseInt(updateStock) < 0) {
                 console.log("Insufficient quantity!")
                 start();
@@ -84,12 +86,28 @@ function wantToBuy() {
                         }, 
                         {
                             id: chosenItem.id
-                        }
-                    ], 
+                        } 
+                    ],
                     function(err) {
                         if(err) throw err;
-                        console.log("\nPurchase successful! Your total is $" + totalPurchase);
-                        start();
+                        console.log("\nPurchase successful! Your total is $" + totalPurchase.toFixed(2));
+
+                        //update product_sales column
+                        connection.query(
+                            "UPDATE products SET ? WHERE ?", 
+                            [
+                                {
+                                    product_sales: productSalesTotals
+                                }, 
+                                {
+                                    id: chosenItem.id
+                                } 
+                            ],
+                            function(err) {
+                                if(err) throw err;
+                            },
+                        );
+                        start()
                     }
                 )
             }

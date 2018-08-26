@@ -23,4 +23,15 @@ VALUES ("Magnetic Calendar", "Office Products", 9.47, 10),
 			("Fire TV Cube", "Electronics", 89.99, 48),
 			("Stainless Steel Blade", "Sports & Outdoors", 45.67, 7);
 
+ALTER TABLE products ADD COLUMN product_sales DECIMAL(10,2);
+
 SELECT * FROM products
+
+CREATE TABLE departments (
+	department_id INTEGER NOT NULL AUTO_INCREMENT,
+	department_name VARCHAR(50),
+	over_head_costs DECIMAL(10,2),
+	PRIMARY KEY (department_id)
+);
+
+SELECT * FROM departments;

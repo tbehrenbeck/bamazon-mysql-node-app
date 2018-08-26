@@ -25,7 +25,7 @@ function menu() {
                 name: "menu", 
                 type: "list", 
                 message: "What would you like to do?", 
-                choices: ["View Product Sales by Department", "Create New Department"]
+                choices: ["View Product Sales by Department", "Create New Department", "Exit"]
             }
         ])
         .then(function(answer) {
@@ -36,6 +36,10 @@ function menu() {
                 case "Create New Department":
                     newDept();
                     break;
+                case "Exit":
+                    process.exit();
+                    break;
+
             }
         })
 }

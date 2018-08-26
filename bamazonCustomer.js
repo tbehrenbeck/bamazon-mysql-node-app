@@ -13,8 +13,30 @@ var connection = mysql.createConnection({
 connection.connect(function (err) {
     if (err) throw err;
     //console.log("connected as id " + connection.threadId);
-    start();
+    menu();
 });
+
+function menu(){
+    inquirer
+    .prompt([
+        {
+            name: "menu", 
+            type: "list", 
+            message: "What would you like to do?", 
+            choices: ["Buy an Item", "Exit"]
+        }
+    ])
+    .then(function(answer) {
+        switch(answer.menu) {
+            case "Buy an Item":
+                start();
+                break;
+            case "Exit":
+                process.exit();
+                break;
+        }
+    })
+}
 
 // first display all of the items available for sale
 function start() {

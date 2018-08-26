@@ -44,3 +44,5 @@ VALUES ("Office Products", 500),
 			("Toys & Games", 220);
 
 SELECT * FROM departments;
+
+/* SELECT * FROM products INNER JOIN departments on products.department_name = departments.department_name;  */

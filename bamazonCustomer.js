@@ -1,6 +1,7 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
 var Table = require('cli-table');
+const chalk = require('chalk');
 
 var connection = mysql.createConnection({
     host: "localhost",
@@ -96,7 +97,7 @@ function wantToBuy() {
             var productSalesTotals= chosenItem.product_sales + totalPurchase;
 
             if(parseInt(updateStock) < 0) {
-                console.log("Insufficient quantity!")
+                console.log(chalk.red.bold("\nInsufficient quantity!\n"));
                 start();
             } 
             else {
@@ -112,7 +113,7 @@ function wantToBuy() {
                     ],
                     function(err) {
                         if(err) throw err;
-                        console.log("\nPurchase successful! Your total is $" + totalPurchase.toFixed(2));
+                        console.log(chalk.green.bold("\nPurchase successful! Your total is $" + totalPurchase.toFixed(2) + "\n"));
 
                         //update product_sales column
                         connection.query(

@@ -1,7 +1,7 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
 var Table = require('cli-table');
-
+const chalk = require('chalk');
 
 var connection = mysql.createConnection({
     host: "localhost",
@@ -138,7 +138,7 @@ function addStock() {
                     ], function (err) {
                             if (err) throw err;
                         })
-                console.log("Inventory added successfully"); //TO DO- currently able to "add" a negative number
+                console.log(chalk.green.bold("\nInventory added successfully\n")); //TO DO- currently able to "add" a negative number
                 menu();
             });
     });
@@ -192,7 +192,7 @@ function newProduct() {
         },
          function (err) {
             if(err) throw err;
-            console.log("New product added successfully");
+            console.log(chalk.green.bold("\nNew product added successfully\n"));
             menu();
         })
     })

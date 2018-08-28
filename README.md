@@ -16,7 +16,7 @@ node bamazonManager.js
 
 ### Customer demo:
 <p align='center'>
-<img width='600' src='./images/customer.svg'>
+<img width='600' src='https://cdn.rawgit.com/tbehrenbeck/bamazon-mysql-node-app/9437a9bb/images/customer.svg'>
 </p>
 
 ### Manager demo:

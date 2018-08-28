@@ -25,7 +25,7 @@ node bamazonManager.js
 </p>
 
 ## Libraries used:
-- [Chalk](https://github.com/chalk/chalk)
-- [MySQL](https://github.com/mysqljs/mysql)
-- [Inquirer](https://github.com/SBoudrias/Inquirer.js)
-- [CLI-Table](https://github.com/Automattic/cli-table)
+- Chalk
+- MySQL
+- Inquirer
+- CLI-Table

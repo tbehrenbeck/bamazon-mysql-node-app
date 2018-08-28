@@ -21,7 +21,7 @@ node bamazonManager.js
 
 ### Manager demo:
 <p align='center'>
-<img width='600' src='./images/manager.svg'>
+<img width='600' src='https://cdn.rawgit.com/tbehrenbeck/bamazon-mysql-node-app/37aa9fb5/images/manager.svg'>
 </p>
 
 ## Libraries used:

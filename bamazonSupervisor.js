@@ -95,3 +95,10 @@ function newDept() {
         })
     })
 }
+
+
+//join tables together 
+//first three columns from 'department'
+//fourth column from 'products'
+//fifth column calculated from the two
+//agrigate overhead cost from like columns

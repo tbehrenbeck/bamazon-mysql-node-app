@@ -13,17 +13,15 @@ To engage the manager interface:
 ```
 node bamazonManager.js
 ```
-Enjoy!
-
 
 ### Customer demo:
 <p align='center'>
-<img width='600' src='customer.svg'>
+<img width='600' src='./images/customer.svg'>
 </p>
 
 ### Manager demo:
 <p align='center'>
-<img width='600' src='manager.svg'>
+<img width='600' src='./images/manager.svg'>
 </p>
 
 ## Libraries used:
